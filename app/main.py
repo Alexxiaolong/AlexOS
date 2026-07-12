@@ -16,8 +16,13 @@ logger = logging.getLogger("alexos")
 
 app = FastAPI(title="AlexOS WhatsApp", version="0.1.0")
 Base.metadata.create_all(bind=engine)
-
-
+@app.get("/")
+def home() -> dict:
+    return {
+        "status": "ok",
+        "name": "AlexOS",
+        "message": "AlexOS è online",
+    }
 @app.get("/health")
 def health() -> dict:
     return {"status": "ok", "outbound_policy": "owner_only"}
